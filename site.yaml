@@ -2,11 +2,11 @@
   gather_facts: false
   tasks:
   - include_role:
-      role: multi_action
+      role: network_backup_restore
     vars:
       action: backup
   - include_role:
-      role: multi_action
+      role: network_backup_restore
     vars:
       action: restore
   - debug:
