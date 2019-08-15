@@ -1,5 +1,5 @@
 - name: Back up the config
-  eos_config:
+  vyos_config:
     backup: yes
     backup_options:
       filename: "{{ backup_filename }}"

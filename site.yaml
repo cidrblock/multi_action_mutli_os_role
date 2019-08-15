@@ -9,3 +9,5 @@
       role: multi_action
     vars:
       action: restore
+  - debug:
+      var: last_backup

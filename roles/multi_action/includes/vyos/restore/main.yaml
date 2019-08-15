@@ -1,0 +1,2 @@
+- debug:
+    msg: "tasks to restore {{ ansible_network_os }}"

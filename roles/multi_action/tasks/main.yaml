@@ -1,3 +1,10 @@
+
+- name: Run init steps for action
+  include: "{{ item }}"
+  with_first_found:
+  - "includes/actions/init/{{ action }}.yaml"
+  - "includes/actions/init/noop.yaml"
+
 - name: Include the plaform specific backup file
   include: "{{ item }}"
   with_first_found:

@@ -1,0 +1,2 @@
+backup_filename: "{{ inventory_hostname }}_config_{{ current_date_ts }}.cfg"
+backup_directory: "{{ playbook_dir }}/backups"

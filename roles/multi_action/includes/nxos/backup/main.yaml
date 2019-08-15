@@ -1,2 +1,10 @@
-- debug:
-    msg: "tasks to backup {{ ansible_network_os }}"
+- name: Back up the config
+  nxos_config:
+    backup: yes
+    backup_options:
+      filename: "{{ backup_filename }}"
+      dir_path: "{{ backup_directory }}"
+
+- name: Set a fact for the last backup filename
+  set_fact:
+    last_backup: "{{ backup_directory }}/{{ backup_filename }}"
