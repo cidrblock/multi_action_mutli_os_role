@@ -1,0 +1,6 @@
+- name: Include the plaform specific backup file
+  include: "{{ item }}"
+  with_first_found:
+  - "includes/{{ ansible_network_os }}/{{ action }}/main.yaml"
+  - "includes/{{ ansible_network_os }}/unsupported_action.yaml"
+  - "includes/unsupported_os.yaml"

@@ -1,0 +1,2 @@
+- fail:
+    msg: "OS {{ ansible_network_os }} is unsupported at this time"

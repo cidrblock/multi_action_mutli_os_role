@@ -1,0 +1,2 @@
+- debug:
+    msg: "tasks to backup {{ ansible_network_os }}"
