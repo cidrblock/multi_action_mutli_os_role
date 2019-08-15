@@ -1,2 +1,33 @@
-- debug:
-    msg: "tasks to restore {{ ansible_network_os }}"
+- name: Set a fact for the filename on the device
+  set_fact:
+    device_filename: "{{ ((restore_source|default(last_backup)).split('/'))[-1] }}"
+
+- name: Enable the scp server
+  nxos_config:
+    lines:
+    - feature scp-server
+  register: scp_server
+
+- name: "Copy the backup to the device"
+  nxos_file_copy:
+    local_file: "{{ restore_source|default(last_backup)  }}"
+    remote_file: "{{ device_filename }}"
+
+- name: Restore the config
+  nxos_config:
+    replace: config
+    replace_src: "{{ device_filename }}"
+
+- name: Delete the device file
+  cli_command:
+    command: "del {{ device_filename }}"
+    prompt:
+    - "Do you want to delete .*"
+    answer:
+    - y
+
+- name: Disable the scp server
+  nxos_config:
+    lines:
+    - no feature scp-server
+  when: scp_server.changed

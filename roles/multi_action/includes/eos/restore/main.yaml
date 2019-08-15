@@ -1,2 +1,4 @@
-- debug:
-    msg: "tasks to restore {{ ansible_network_os }}"
+- name: Restore the config
+  eos_config:
+    replace: config
+    src: "{{ restore_source|default(last_backup) }}"
